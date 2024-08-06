@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>The piece of code that really got me started | View from the code face</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="The piece of code that really got me started" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<meta property="og:description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<link rel="canonical" href="http://localhost:4000/piece-code-really-got-started.html" />
+<meta property="og:url" content="http://localhost:4000/piece-code-really-got-started.html" />
+<meta property="og:site_name" content="View from the code face" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-29T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="The piece of code that really got me started" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2017-03-29T00:00:00+01:00","datePublished":"2017-03-29T00:00:00+01:00","description":"View from the code face is a personal blog about programming from Alan Mellor","headline":"The piece of code that really got me started","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/piece-code-really-got-started.html"},"url":"http://localhost:4000/piece-code-really-got-started.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#353535">
+<meta name="msapplication-navbutton-color" content="#353535">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <ul>
+            <li class="fork"><a href="https://github.com/viewfromthecodeface/viewfromthecodeface.github.io">View On GitHub</a></li>
+            
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>View from the code face</h1>
+          <p>View from the code face is a personal blog about programming from Alan Mellor</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/viewfromthecodeface">viewfromthecodeface</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/mattgraham">mattgraham</a></span>
+        </div>
+
+        <p>It’s not every day you open up your “desk drawer of things you should throw out”, and get a reminder of where it all started!</p>
+
+<!--more-->
+
+<p><img src="/images/Z80_RND_src-276x300.jpg" alt="Source code for a random number generator, Z80 assembler" /></p>
+
+<h2 id="space-invaders-and-random-numbers">Space Invaders and Random Numbers</h2>
+
+<p>My programming all started in response to Space Invaders. And this was the piece of code that really opened up programming to me.</p>
+
+<p>This one here.</p>
+
+<p>It is a <a href="https://en.wikipedia.org/wiki/Pseudorandom_number_generator">Pseudo Random Number Generator</a> (PRNG) written in Z80 assembler.</p>
+
+<p>You make a call to the function RND, and you will get a 16 bit random number the HL registers, along with the lower bits in A, just as a convenience.</p>
+
+<p>It works out (k * seed mod 65537 + r), generating a sequence of numbers that apparently have no connection to each other.</p>
+
+<p>It is as if they were picked from a hat <em>at random</em>.</p>
+
+<p>But why would such an obscure piece of mathematics have caught this 14 year old’s attention?</p>
+
+<h2 id="morph">Morph</h2>
+
+<p><img src="/images/morph.jpg" alt="Morph - caught my imagination. I thought 'I could maybe animate that...'" /></p>
+
+<p>Before computing, I had a go at amusing myself trying to re-create my favourite cartoon character, Morph.</p>
+
+<p>Morph was (and is!) a plasticine model about six inches high, who is the central character of some animated clips.</p>
+
+<p>They were shown on the BBC show Take Hart, and I thought they were fab.</p>
+
+<p> </p>
+
+<p>Me being me, I decided to have a go at making my own copy.</p>
+
+<p>So, I set myself up with:</p>
+
+<ul>
+  <li>A table</li>
+  <li>A lump of plasticine</li>
+  <li>A 500 watt light</li>
+  <li>A tripod</li>
+  <li>A Bolex B8SL 8mm movie camera</li>
+  <li>A cable release</li>
+</ul>
+
+<p><img src="/images/bolex-b8sl-300x300.jpg" alt="My 8mm animation camera, the Bolex B8SL. I still have it - and it still works! " /></p>
+
+<p>After making some very primitive plasticine models, and persuading a more talented friend (props to Duncan!) to draw some backgrounds, I made my first test films.</p>
+
+<p>It’s a slow, but quite satisying process.</p>
+
+<p>Position the models. Click click.</p>
+
+<p>Make small moves on the models. Click Click.</p>
+
+<p>Shooting two frames of film each move meant I could get away with an effective frame rate of 8 FPS. Eight separate movements added up to one second of movie.</p>
+
+<h2 id="turns-out-its-a-skill">Turns out it’s a skill</h2>
+
+<p>My first attempts (and even my later attempts) would never set the world alight.</p>
+
+<p>As a winging-it animator, my movements were too fast, too large, too jerky.</p>
+
+<p>There was no characterisation or emotion.</p>
+
+<p>I had no plot to speak of.</p>
+
+<p>The animations were <em>bad</em>.</p>
+
+<p>But I was proud of them: people told me I couldn’t do it, I was too young, Disney employs thousands of people, yadda yadda.</p>
+
+<p>(Ever seen what happens when you tell me I can’t do something? Yep. That.) But I just wanted to see what I could do.</p>
+
+<p>And I learned that Nick Park’s job was safe. I would never be a great animator.</p>
+
+<p>But I’d had <em>fun</em>.</p>
+
+<h2 id="whats-this-cabinet-in-the-pub-dad">What’s this cabinet in the pub, dad?</h2>
+
+<p>Space Invaders came as a real surprise to me.</p>
+
+<p>I was at a Sunday Lunch with my family in a pub, a rare treat out. There was quite a commotion in the corner.</p>
+
+<p>Space Invaders. Coin Op. Lots of people stood around it.</p>
+
+<p>I looked at others playing it.</p>
+
+<p>It was *so* exciting to me. This was something fun.</p>
+
+<p>It was an animation - <em>but you could change the script in real time!</em></p>
+
+<p>So, how did it work?</p>
+
+<p>and … <em>can I make one?</em></p>
+
+<h2 id="clive-sinclair-takes-over-my-tv">Clive Sinclair takes over my TV</h2>
+
+<p><img src="/images/console-sinclair-computer-model-zx81-united-kingdom-1982-659615-small-300x178.jpg" alt="The Sinclair ZX81 - my first home computer" /></p>
+
+<p>Museums Victoria https://collections.museumvictoria.com.au/items/1400135</p>
+
+<p>After a lot of saving up (£70 was a *lot* of money), I was able to get hold of a Sinclair ZX81, the wondrous beast in the picture.</p>
+
+<p>It had an 8 bit CPU, the Z80A, which was clocked at 3.5 MHz.</p>
+
+<p>As the CPU drove the display, about 75% of those cycles actually went to running your program.</p>
+
+<p> </p>
+
+<p>To back this up, the ZX81 sported a full 1k (one kilobyte) of RAM.</p>
+
+<p>This RAM had to:</p>
+
+<ul>
+  <li>Store the program code</li>
+  <li>Store the program data</li>
+  <li>Act as the display video memory</li>
+  <li>Hold any tools, like an assembler or compiler</li>
+</ul>
+
+<p>All at the same time.</p>
+
+<p>To see what you were doing, you plugged it into the aerial socket of a television set.</p>
+
+<p>I was hooked immediately.</p>
+
+<h2 id="learning-basic">Learning BASIC</h2>
+
+<p>Whilst developed as a teaching language at Dartmouth College in 1965, BASIC (Beginners All Purpose Symbolic instruction Code) took the 1980s by storm.</p>
+
+<p>All home computers came pre-loaded with the BASIC language.</p>
+
+<p>Instead of an Operating System, like MacOS, Ubuntu or Windows 10, you turned on a computer, and were greeted with a BASIC copyright statement, and a cursor where you could type your BASIC statements.</p>
+
+<p>[code language=”basic”]</p>
+
+<p>10 PRINT “Hello! This is Al’s computer!”</p>
+
+<p>20 GOTO 10</p>
+
+<p>[/code]</p>
+
+<p>The excellent self-learning ZX81 Manual covered BASIC very well. How to use variables, if statements and for loops was all made clear, even to this 12 year old.</p>
+
+<h2 id="sir-clives-nod-to-games-programmers">Sir Clive’s nod to games programmers</h2>
+
+<p>The Zx81 featured two BASIC instructions critical to games programming:</p>
+
+<ul>
+  <li><strong>INKEY$</strong> which read a character from the keyboard without pausing the program</li>
+  <li><strong>PRINT AT x,y;</strong> which allowed you to place a character anywhere on screen at the (x, y) coordinates</li>
+</ul>
+
+<p>Combined, it wasn’t too hard to make a very simple loop that moved a ‘laser base’ around:</p>
+
+<p>[code language=”basic”]</p>
+
+<p>10 LET X = 12;</p>
+
+<p>20 LET K$ = INKEY$;</p>
+
+<p>30 IF K$=”Q” THEN END;</p>
+
+<p>40 IF K$=”O” AND X&gt;0 THEN LET X=X-1;</p>
+
+<p>50 IF K$=”P” AND X&lt;27 THEN LET X=X+1;</p>
+
+<p>60 PRINT AT X, 22; “ <a> “;</a></p>
+
+<p>70 GOTO 20</p>
+
+<p>[/code]</p>
+
+<p>This simple code runs until you press the ‘Q’ key at which point it stops.</p>
+
+<p>Pressing the O key moves the base to the left. Pressing P moves it to the right.</p>
+
+<p>The AND clauses stop you falling off the side of the screen.</p>
+
+<p>The PRINT AT statement draws cute 80s ASCII art to depict a laser base.</p>
+
+<p>The two spaces at each side of the laser base are technical, and erase ‘trails’ from the previous frame, crudely.</p>
+
+<p>It’s not much of a program.</p>
+
+<p>But to this 12 year old, it was <em>pure magic</em>; I had replicated that big, expensive Arcade game in my bedroom, at least a bit. I could move a laser base left and right.</p>
+
+<h2 id="making-bettergames">Making better games</h2>
+
+<p>BASIC, it turned out, was too slow to make any decent games.</p>
+
+<p>Moving one laser base was ok. But once we added obstacles, missiles, enemy space ships - if you can call <O> that - things ground to a halt.</O></p>
+
+<p><img src="/images/ProgrammingTheZ80-183x300.jpg" alt="Book Cover - Programming the Z80 by Rodnay Zaks" /></p>
+
+<p>Enter <strong>Assembly language</strong></p>
+
+<p>As the ZX81 was based on the Z80 CPU, this meant you could bypass the slowly interpreted BASIC language entirely.</p>
+
+<p>You could code in machine language.</p>
+
+<p>I learned this from the book pictured, intended for graduate level microprocessor engineers. Thankfully, some magazines of the day covered some of the background as well.</p>
+
+<h2 id="coding-games-in-assembler-in-1982">Coding games in assembler in 1982</h2>
+
+<p>You would start by deciding which Z80 instructions you needed to make the program work.</p>
+
+<p>And these would be very many, as assembly is very low level.</p>
+
+<p>You would write down these instructions by hand on a piece of paper.</p>
+
+<p>You would translate them into their equivalent hex codes, by looking up the opcodes in the back of the ZX81 manual (or the Zaks book, pictured), and working out relative jump addresses by hand.</p>
+
+<p>The ZX81 could then have a simple hex loader BASIC program typed in, that allowed you to type in these hex codes, one at a time.</p>
+
+<p>Using the BASIC command ‘USR’ - meaning ‘run user written machine code program’ - you could launch a blisteringly fast game.</p>
+
+<p>Sometimes.</p>
+
+<p>In the beginning, you would have made a simple mistake - say typed “B9” when you should have typed “B0”, and the whole machine would crash.</p>
+
+<p>You would lose all your work.</p>
+
+<p>But when it did work … it was magic.</p>
+
+<p>Games, with their lovely ASCII art, that ran as fast as the arcade versions.</p>
+
+<h2 id="so-where-does-that-code-come-in">So, where does that code come in?</h2>
+
+<p>The original code is a piece of Z80 assembler that generates random numbers. Each time you call it, a new number is returned. Each number in the sequence is hard to predict. It has no obvious relation to the one before it.</p>
+
+<p>This is brilliant in games.</p>
+
+<p>It means the game code can decide what to do with some randomness. Enemy spaceships - our <O>, remember? - can suddenly decide to fly in a different direction. This turns the player's actions into more of a game of skill, than just learning patterns.</O></p>
+
+<p>I got this Z80 code from Personal Computer World magazine, if I recall right.</p>
+
+<p>And I was so grateful.</p>
+
+<p>I had tried to guess my way to a random number generator.</p>
+
+<p>Not knowing the maths behind the Mersenne twister, and ‘maximal length sequences’, I had no chance.</p>
+
+<p>My test set up involved calling the random function twice, and using the values to print a square on screen at those coordinates.</p>
+
+<p>Everything I tried had a very obvious, visible pattern to it.</p>
+
+<p>Until the day I plugged in the code above.</p>
+
+<p>It was amazing.</p>
+
+<p>Squares appeared around the screen - and I couldn’t gaze in the right place to catch them appear anymore.</p>
+
+<h2 id="that-was-my-start">That was my start</h2>
+
+<p>By this time, I now had all the tools I needed to make my simple games:</p>
+
+<ul>
+  <li>Could hand code Z80 assembler</li>
+  <li>Could enter it using a hex loader</li>
+  <li>Understood how to read the keyboard and print at a position on screen, but in assembler</li>
+  <li>Understood animation, and movement, and variables</li>
+  <li>Had the raw speed to make arcade games</li>
+</ul>
+
+<p>I ended up making a cute side-scrolling racing game in a 10 x 10 grid on my 1k ZX81.</p>
+
+<p>It used the random generator to create the road and obstacles. I found I could ask for a ‘game number’ to be entered, between 0 and 65535.</p>
+
+<p>By using this to ‘seed’ the random sequence, I got 65 thousand repeatable different game maps stored in 1k of RAM.</p>
+
+<p>An early example of using a ‘generator function’ as data compression, a technique I could draw in later.</p>
+
+<h2 id="and-then-i-got-banned-from-the-school-computer-lab-">And then I got banned from the school computer lab …</h2>
+
+<p><img src="/images/Link380z_computer-300x225.jpg" alt="The school computer - the research machines RML 380Z" /></p>
+
+<p>Because I then went on to build an ASCII art ‘Scramble’ game clone on the school RML 380Z computers.</p>
+
+<p>This had five stages of a side scrolling spaceship, that shot at enemies which flew towards it, and drop bombs on military targets on the ground.</p>
+
+<p>It was a copy of the fabulous Scramble coin-op arcade game.</p>
+
+<p>I had to do this at school, as the RML 380z computers had enough RAM to fit it all in.</p>
+
+<p>It went ‘viral’.</p>
+
+<p> </p>
+
+<p><img src="/images/scramble-screen-shot-300x225.jpg" alt="Scramble screen shot - my fave 80s arcade game, by far" /></p>
+
+<p>Every break time, the lab would fill up with kids playing this game. All break. Every computer. For weeks on end.</p>
+
+<p>Unfortunately, the RML380Z had a keyboard buffer, which only reloaded when you released the key.</p>
+
+<p>So all the kids were mashing the up and down keys of the game, very quickly.</p>
+
+<p>In a few short weeks, the keyboards started failing.</p>
+
+<p>The computing teacher, err, <em>informed me</em> (he was none too pleased) that each keyboard cost £75 to repair. Money that the school did not have.</p>
+
+<p>And so with immediate effect, I became a geek legend: All kids, the game disk itself, and me were banned from the computer lab!</p>
+
+
+      </section>
+
+    </div>
+  </body>
+</html>

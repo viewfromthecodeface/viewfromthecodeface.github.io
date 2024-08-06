@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Technical Debt: Where the analogy breaks down | View from the code face</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Technical Debt: Where the analogy breaks down" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<meta property="og:description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<link rel="canonical" href="http://localhost:4000/technical-debt-analogy-breaks.html" />
+<meta property="og:url" content="http://localhost:4000/technical-debt-analogy-breaks.html" />
+<meta property="og:site_name" content="View from the code face" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-22T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Technical Debt: Where the analogy breaks down" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2017-03-22T00:00:00+00:00","datePublished":"2017-03-22T00:00:00+00:00","description":"View from the code face is a personal blog about programming from Alan Mellor","headline":"Technical Debt: Where the analogy breaks down","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/technical-debt-analogy-breaks.html"},"url":"http://localhost:4000/technical-debt-analogy-breaks.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#353535">
+<meta name="msapplication-navbutton-color" content="#353535">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <ul>
+            <li class="fork"><a href="https://github.com/viewfromthecodeface/viewfromthecodeface.github.io">View On GitHub</a></li>
+            
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>View from the code face</h1>
+          <p>View from the code face is a personal blog about programming from Alan Mellor</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/viewfromthecodeface">viewfromthecodeface</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/mattgraham">mattgraham</a></span>
+        </div>
+
+        <p>I’m a big fan of Martin Fowler’s definition of technical debt, <a href="http://martinfowler.com/bliki/TechnicalDebt.html">here</a>.</p>
+
+<p>The name refers to the myriad ‘‘do it quick, or do it right’ decisions made by engineers everyday. In software, we have a little more freedom than our friends in Aeronautics to actually ship something that works - but only just. We can always fix it later. With a 747 - not so much.</p>
+
+<p>But just how well does this analogy fit typical software projects?</p>
+
+<!--more-->
+
+<p>Fowler defines Technical Debt so that it is familiar to the accounts department. It is the idea that <em>some debt is good</em>. Home buyers take out mortgages - debt - to buy a house. Business owners take out a loan, or VC funding - debt - in order to scale out a business.</p>
+
+<p>These are good uses.</p>
+
+<p>Bad uses include taking out a £500k personal loan to blow on a monster party. Long after the last broken glass has been swept away, you will still be liable for the loan plus interest. With nothing to show for it. And no asset you could sell to raise the repayment.</p>
+
+<p>Technical Debt in software is then pragmatic choices to ship software to a hastened deadline, to gain traction or book revenue early in some way. Out of the profits, we can go back and ‘pay down the debt’: rework the software to get it right.</p>
+
+<p>The analogy, whilst helpful,  breaks down in two important ways.</p>
+
+<p><strong>Non leveraged Technical Debt</strong>. Like our ‘loan for a party’ example, this is where the debt has no lasting benefit. Now, we’ve had a name for this in software for a lot longer: bad code. It is all too tempting as an engineer to call all my bad code ‘technical debt’. It isn’t.</p>
+
+<p><strong>Paying Down without Cash.</strong> The most serious breakdown is in how we pay down the debt.</p>
+
+<p>A real debt is paid with cash. Cash is a form of universal barter. It was invented to solve a specific problem. If I have a goat and want a hair cut, and you are a barber who wants a goat, we can make a deal. Cash solves the problem that happens when you don’t have any use for a goat. Or I think that a hair cut is worth less than a full goat.</p>
+
+<p>The analogous problem in software technical debt is that we can pay down the debt if we can easily reverse the work we did - the ‘haircut for a full goat’ scenario.</p>
+
+<p>Typically, this is wishful thinking. Software moves on.</p>
+
+<p>In large teams, as soon as I check in my ‘debt’ code, other programmers will download what I have done, and then <em>build their code on top of mine.</em> The assumptions I intended to be temporary now must become the basis for the next phase of development.</p>
+
+<p>Technically, this causes software couplings to my variables, data structures and APIs. It also causes the more insidious problem of connascence. For example, my technical debt may be that I - hideously - used a ‘magic number flag value’. So a person’s age might range from 0 to 200 years, and then I use 201 years to mean ‘person’s age not known’.</p>
+
+<p>The next programmer might (?) find a handy use for this, and write code that assumes unknown ages will always be set to 201. They might do something equally hideous like start a loop at 201, counting down to zero in a bid to find a maximum age.</p>
+
+<p>It is an artificial example. But can you see how - now - my technical debt has become locked in to another part of the system. Now another programmer refactors all of this, preserving behaviour. The magic number becomes even further entrenched, and changed to a new and more centralised form.</p>
+
+<p>When I come to paying back the technical debt, I find that it is no longer a case of removing the magic number code. I have to <em>find</em> that code - in its new form - now it has been refactored. I need to understand if removing the magic number will now <em>break</em> the code built on top of it. This code may now itself be in production - or, worse - have become a published API specification that third parties rely on.</p>
+
+<p>All of a sudden, I can no longer pay down the debt using the same currency.</p>
+
+<p>In software, we have no cash equivalent. There is no universal set of lines I can type to fix the problem. Each downpayment is custom and unique, not universal and transferrable.</p>
+
+<p>In real world debt, the amount might go up, but at least you just need ‘more of the same’ to repay it. In software, you quickly get to a point where the repayment becomes impossible.</p>
+
+<p>Just an observation. Let’s not be too quick to talk about ‘technical debt’ without realising that it’s not always simple to fix it afterwards.</p>
+
+<p> </p>
+
+<hr />
+
+<p>Originally published at <a href="https://www.linkedin.com/pulse/technical-debt-where-analogy-breaks-down-alan-mellor">LinkedIn</a></p>
+
+
+      </section>
+
+    </div>
+  </body>
+</html>

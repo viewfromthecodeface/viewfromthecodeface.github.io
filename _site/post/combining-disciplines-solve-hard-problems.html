@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Combining disciplines to solve hard problems | View from the code face</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Combining disciplines to solve hard problems" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<meta property="og:description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<link rel="canonical" href="http://localhost:4000/post/combining-disciplines-solve-hard-problems.html" />
+<meta property="og:url" content="http://localhost:4000/post/combining-disciplines-solve-hard-problems.html" />
+<meta property="og:site_name" content="View from the code face" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-14T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Combining disciplines to solve hard problems" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2017-03-14T00:00:00+00:00","datePublished":"2017-03-14T00:00:00+00:00","description":"View from the code face is a personal blog about programming from Alan Mellor","headline":"Combining disciplines to solve hard problems","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/post/combining-disciplines-solve-hard-problems.html"},"url":"http://localhost:4000/post/combining-disciplines-solve-hard-problems.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#353535">
+<meta name="msapplication-navbutton-color" content="#353535">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <ul>
+            <li class="fork"><a href="https://github.com/viewfromthecodeface/viewfromthecodeface.github.io">View On GitHub</a></li>
+            
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>View from the code face</h1>
+          <p>View from the code face is a personal blog about programming from Alan Mellor</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/viewfromthecodeface">viewfromthecodeface</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/mattgraham">mattgraham</a></span>
+        </div>
+
+        <p>At my first job, a simple request on a spec led to a really hard problem to solve. How do you get data out of a machine more quickly than you can produce it?</p>
+
+<p>This is how a bit of team work combined three disciplines to find a solution.</p>
+
+<!--more-->
+
+<h2 id="at-the-end-of-your-phone-line-is-glass">At the end of your phone line is glass</h2>
+
+<p>Ever wondered what you would see if you travelled inside your telephone, down the phone line, and into the local exchange?</p>
+
+<p>It is a fascinating world, telecoms.</p>
+
+<p>Modern exchanges deal in one thing: Optical Fibre. And lots of it.</p>
+
+<p>To get the bandwidth needed to support all of our Netflix, and Snapchat and even voice  calls - gasp! - to friends, telecoms uses optical fibre to carry the signals.</p>
+
+<p>And this means we need a way to link in the analogue electronics of a landline into fibre.</p>
+
+<h2 id="that-glass-connects-to-one-of-these">That glass connects to one of these</h2>
+
+<p><img src="/post/images/389px-OLT_Alcatel_CityPlay_Amiens-243x300.jpg" alt="Optical Line Termination Equipment" /></p>
+
+<p>(photo: By Vivien Guéant - Image importée du reportage Visite du siège et des infrastructures techniques de CityPlay à Amiens de Lafibre.info, CC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=29702164)</p>
+
+<p>My first job at Siemens was to code the help text, using the C language, for a piece of telecoms equipment which did just that. A classic first job for a junior engineer.</p>
+
+<p>The Siemens Optical Line Termination Equipment was a rugged, high end bit of kit that you plugged fibres into. It looked similar to the one in the photo, made by Alcatel.</p>
+
+<p>The interesting part, as I progressed and got further into the project, was <strong>monitoring</strong>.</p>
+
+<h2 id="measuring-performance---quickly">Measuring performance - quickly</h2>
+
+<p>A key part of this kit is knowing it is working right, and diagnosing faults quickly when it isn’t.</p>
+
+<p>To do this, we needed to implement an on-demand view of the latest monitoring data. The key indicator is the Bit Error Rate (BER). This describes how frequently a bit of data is unreadable. Once the BER hits a certain threshold, you know something, somewhere needs replacing.</p>
+
+<p>The monitoring data was well specified in the <a href="https://en.wikipedia.org/wiki/G.726">G.721 standard</a>, and was reasonably straightforward to implement.</p>
+
+<p>The challenge was speed. <strong>We had 500 microseconds to deliver it</strong></p>
+
+<h2 id="what-do-you-do-when-its-too-slow">What do you do when it’s too slow?</h2>
+
+<p>Whlst this was a perfectly reasonably requirement in the spec, it was hard to achieve.</p>
+
+<p>The idea was that a central engineer’s laptop would poll all of the termination units, and give an answer immediately. Being able to poll them in sequence, very quickly, simplified the software you needed on the laptop.</p>
+
+<p>Our first attempt was to write the G.721 statistics calculations based on latest data as soon as the request landed.</p>
+
+<p>It was <em>much</em> too slow. Not within any kind of ‘optimise the code’ kind of thinking.</p>
+
+<p>We needed a different approach.</p>
+
+<p>So we put out heads together as a team. What else could we do, if we were not able to generate the data on request?</p>
+
+<h3 id="cache-the-results">Cache the results</h3>
+
+<p>First idea was to cache the results: Don’t generate the data when we are asked for it, pre-generate it.</p>
+
+<p>We could use a background thread to compute a ‘latest snapshot’ of this data, and store it in RAM, where it is fast to deliver.</p>
+
+<p>This solved our ‘too slow to generate problem’.</p>
+
+<p>It meant that, worst-case, our statistics might be a few minutes out of date. But this was ok. The spec did not mention how fresh the data needed to be. Obviously, “as fresh as possible”, but this gave us the opportunity to cache a snapshot.</p>
+
+<p>Good - but not good enough.</p>
+
+<h3 id="use-the-non-maskable-interrupt">Use the non-maskable interrupt</h3>
+
+<p>We still could not guarantee delivery within 500 microseconds.</p>
+
+<p>We had the data ready, but the way we had set up our Real Time Operating System (RTOS) meant that we couldn’t interrupt its highest priority tasks soon enough.</p>
+
+<p>One of those decisions that you might do differently if you did it again. But here we are.</p>
+
+<p>We chose the slightly out-of-the-box idea of using the non maskable interrupt of the CPU. This would bypass the RTOS completely.</p>
+
+<p>These things are interrupts at the lowest hardware level.</p>
+
+<p>Whilst our RTOS would handle normal interrupts, in a methodical and ordered way, the NMI just leaps in, and interrupts the RTOS itself.</p>
+
+<p>Unconventional. But this gave us our sub-500 microsecond response of the latest data.</p>
+
+<p>Job done?</p>
+
+<p>Not quite.</p>
+
+<h3 id="use-double-buffering---like-in-graphics-applications">Use double buffering - like in graphics applications</h3>
+
+<p>Because our RTOS was not in control at this point, we had to be careful about concurrency.</p>
+
+<p>What would happen if the NMI came in, and sent out the snapshot data <em>whilst we were half way through generating it?</em></p>
+
+<p>This is the classic multi threading error.</p>
+
+<p>Best case, the data would be ‘not right’. Worst case, and quite typically, the data sent is entirely corrupted.</p>
+
+<p>Normally, you would use an RTOS <strong>mutex</strong> for this.</p>
+
+<p>The calculating code would acquire a lock, so that any read attempts had to wait until it was finished.</p>
+
+<p>But we couldn’t do that here; we had decided to bypass our RTOS to get raw speed.</p>
+
+<p>So, we recalled our days in home computer gaming which has a similar problem: screen flicker. And we remembered how flicker was solved - using double buffering.</p>
+
+<h3 id="how-double-buffering-solves-problems-like-this">How double buffering solves problems like this</h3>
+
+<p>[caption id=”attachment_166” align=”alignleft” width=”261”]<img src="/post/images/pageFlipping-261x300.gif" alt="Double Buffering from Java tutorials" /> How double buffering with pointer swapping works (from Java tutorials)[/caption]</p>
+
+<p>A game is an animation. Every 50th of  a second (or faster, now) the entire screen is updated with all the graphics in the latest places.</p>
+
+<p>Since the last frame, a lot of that data has changed: missiles move, mario jumps, the rally car skids.</p>
+
+<p>Old games would have a problem where the new data was written to the same ‘screen buffer’ as the previous frame.</p>
+
+<p>Inevitably, the screen update would happen as the game was half way through its calculations.</p>
+
+<p>The result was torn lines, weird flashes of colour and a flickering of objects, as they vanished for 1/50th of a second.</p>
+
+<p>The problem here is that you really need to write the next frame in ‘fresh memory’. You update the screen from a different memory set. Then you swap over.</p>
+
+<p>This way. the screen update only ever happens from memory that isn’t being changed.</p>
+
+<h3 id="adding-two-g721-statistics-buffers">Adding two G.721 statistics buffers</h3>
+
+<p>So that’s what we did.</p>
+
+<p>We allocated twice the RAM needed for one set of G.721 data.</p>
+
+<p>We set a C “write” pointer to the first area, and prefilled that at app startup.</p>
+
+<p>We then ‘swapped over’ buffers: We set a C “read” pointer to this first area, and moved the write pointer to the second area.</p>
+
+<p>Over the next few minutes, data would be collected, and this second ‘write’ area would be updated.</p>
+
+<p>Any NMI read requests coming in would send out data from the first ‘read’ area.</p>
+
+<p>As soon as the ‘write’ area data was finished, we would swap these pointers over.</p>
+
+<p>To prevent corruption due to the swap, we used an atomic ‘exchange’ kind of operation to flip the pointers over.</p>
+
+<p> </p>
+
+<h2 id="in-retrospect">In Retrospect</h2>
+
+<p>This was one of my earliest examples of a team being able to solve an ‘impossible’ problem, by talking, and mixing up several ideas from different backgrounds.</p>
+
+<p>Electronics-level CPU knowledge, games programming, and a bit of Computer Science fundamentals all combined to get a result.</p>
+
+
+      </section>
+
+    </div>
+  </body>
+</html>

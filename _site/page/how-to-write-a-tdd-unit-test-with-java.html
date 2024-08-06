@@ -1,0 +1,303 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>How to write a TDD Unit Test with Java | View from the code face</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="How to write a TDD Unit Test with Java" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<meta property="og:description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<link rel="canonical" href="http://localhost:4000/page/how-to-write-a-tdd-unit-test-with-java.html" />
+<meta property="og:url" content="http://localhost:4000/page/how-to-write-a-tdd-unit-test-with-java.html" />
+<meta property="og:site_name" content="View from the code face" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-02-27T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="How to write a TDD Unit Test with Java" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2017-02-27T00:00:00+00:00","datePublished":"2017-02-27T00:00:00+00:00","description":"View from the code face is a personal blog about programming from Alan Mellor","headline":"How to write a TDD Unit Test with Java","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/page/how-to-write-a-tdd-unit-test-with-java.html"},"url":"http://localhost:4000/page/how-to-write-a-tdd-unit-test-with-java.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#353535">
+<meta name="msapplication-navbutton-color" content="#353535">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <ul>
+            <li class="fork"><a href="https://github.com/viewfromthecodeface/viewfromthecodeface.github.io">View On GitHub</a></li>
+            
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>View from the code face</h1>
+          <p>View from the code face is a personal blog about programming from Alan Mellor</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/viewfromthecodeface">viewfromthecodeface</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/mattgraham">mattgraham</a></span>
+        </div>
+
+        <p>https://youtu.be/d1EAyR_NCOA</p>
+
+<h2 id="where-do-we-start"> Where do we start?</h2>
+
+<p>With test-first TDD, the starting point is to figure out how to code a unit test.</p>
+
+<p>The test has to be easy to read, say exactly what the production class needs to do, and use its public interface.</p>
+
+<p>The key to writing a unit test is to use the <strong>three ‘A’s</strong>:</p>
+
+<ul>
+  <li><strong>Arrange</strong> - new up our object under test, and wire it to any collaborators it needs</li>
+  <li><strong>Act</strong> - call the method we are testing to get an actual result</li>
+  <li><strong>Assert</strong> - check the actual result is correct</li>
+</ul>
+
+<p>In Test Driven Development, you do these in the reverse order - figure out the assert, make the actual call, then arrange the objects.</p>
+
+<p>So how does this work in practice?</p>
+
+<h2 id="tdd-add-two-numbers-example-but-better-than-usual">TDD ‘Add two numbers’ example (but better than usual)</h2>
+
+<p>Let’s code a toy object to add two numbers together.</p>
+
+<p>We’ll use Java, JUnit 4 and <a href="http://site.mockito.org/">Mockito</a>.</p>
+
+<p>Our object will be a Calculator class. And purely to demonstrate the TDD technique, it will have one, very weird responsibility: it will read its two numbers from a NumberSource, add them together, and return the actual result.</p>
+
+<p>The reason for the NumberSource is to show how we can write the test for the Calculator class <em>before</em> we write the real number sources.</p>
+
+<h3 id="codingthe-numbersource-interface">Coding the NumberSource interface</h3>
+
+<p>First up (at least the way I do it), we’ll need an interface for our number source:</p>
+
+<p>[java]public interface NumberSource { long fetchNumber(); } [/java]</p>
+
+<p>The contract here is that whenever you call fetchNumber(), a new number will be returned as a long.</p>
+
+<h3 id="weve-already-started-designing-">We’ve already started designing …</h3>
+
+<p>This interface might seem trivial, but in fact we have just made a <strong><em>design decision</em></strong>.</p>
+
+<p>This interface relates to the <em>design</em> of our software - how the pieces pull apart and fit together.</p>
+
+<p>It is a <em>decision</em> because it is not the only way of doing this. But we have chosen this one.</p>
+
+<p>The value of Test Driven Development is that it <em>forces</em> you to think of these things up front. Before we write a ton of spaghetti code which we later delete :)</p>
+
+<h3 id="coding-the-test-class---assert">Coding the test class - ‘Assert’</h3>
+
+<p>We start with the test class shell:</p>
+
+<p>[java] public class CalculatorTest {</p>
+
+<p>@Test public void addsTwoNumbersFromSource(){ } } [/java]</p>
+
+<p>We follow our 3 As backwards, so next we add the ‘assert’ line:</p>
+
+<p>[java] public class CalculatorTest { private static final long FIRST_NUMBER = 12345678L; private static final long SECOND_NUMBER = 876543L;</p>
+
+<p>@Test public void addsTwoNumbersFromSource(){</p>
+
+<p>assertThat( actual, is(FIRST_NUMBER + SECOND_NUMBER) ); } } [/java]</p>
+
+<p>This bit doesn’t compile. But it will do soon.</p>
+
+<p>This is a typical workflow in TDD. A compile failure is simply classed as a test failure.</p>
+
+<p>Overall, the assert is saying “is the actual answer the sum of two test numbers?’ If we’ve done a good job, this is easy to read out of the code.</p>
+
+<p>We will supply these two test numbers to the Calculator as a later step.</p>
+
+<h3 id="using-hamcrest-matchers-to-make-it-more-readable">Using Hamcrest Matchers to make it more readable</h3>
+
+<p>To code the assert, we’re using the <a href="http://hamcrest.org/JavaHamcrest/">hamcrest matchers</a> library to get the method ‘is’. We statically import this from Matchers.is().</p>
+
+<p>We use the variable name ‘actual’ to clue us in that this is going to be the result of a method call on our calculator object.</p>
+
+<p>To move us along a TDD step and fix the compile fail around ‘actual’, we begin to flesh out our public interface for our Calculator class.</p>
+
+<p>[java] public class CalculatorTest { private static final long FIRST_NUMBER = 12345678L; private static final long SECOND_NUMBER = 876543L;</p>
+
+<p>@Test public void addsTwoNumbersFromSource(){</p>
+
+<p>Calculator calculator = new Calculator(); long actual = calculator.fetchTwoAndAdd();</p>
+
+<p>assertThat( actual, is(FIRST_NUMBER + SECOND_NUMBER) ); } } [/java]</p>
+
+<ul>
+  <li>We’ve got ‘actual’ defined as a long, so that’s one compile failure sorted.</li>
+  <li>We’ve also defined the public interface to our calculator object.</li>
+  <li>We’ve called the object ‘calculator’, and given it a public method.</li>
+  <li>We created a new instance of the Calculator class, to make the calculator object.</li>
+</ul>
+
+<h3 id="coding-the-production-class">Coding the production class</h3>
+
+<p>We can now start the calculator class coding:</p>
+
+<p>[java] public class Calculator {</p>
+
+<p>public long fetchTwoAndAdd() { return 0; } } [/java]</p>
+
+<p>This should all compile now.</p>
+
+<p>We run the test, to prove that the JUnit ‘success’ bar goes red, to indicate the test has failed.</p>
+
+<h3 id="we-prove-that-the-test-fails-why">We prove that the test fails? Why?</h3>
+
+<p>We follow a <strong>RED-GREEN-REFACTOR</strong> cycle in TDD. As the tests drive along our development, we need to know that we have a test that fails because the production code isn’t ready yet. This gives us some confidence when it is ready and the test passes.</p>
+
+<p>If the test passes as soon as you write it, chances are it’s a side effect of some other code somewhere. Side effects are bad. They make it hard to spot where in the code an effect happens. That makes it hard to change, and prone to bugs. The side effect probably won’t work for any values other than the ones in the test.</p>
+
+<p>So we make sure our new tests <em>fail</em> first, to avoid such mistakes.</p>
+
+<h3 id="growing-the-test---arrange">Growing the test - ‘Arrange’</h3>
+
+<p>The next step of our backwards 3 As is ‘arrange’. This is where we do ‘object wiring’.</p>
+
+<p>First in the test class:</p>
+
+<p>[java] public class CalculatorTest { private static final long FIRST_NUMBER = 12345678L; private static final long SECOND_NUMBER = 876543L;</p>
+
+<p>@Mock private NumberSource source ;</p>
+
+<p>@Before public void beforeEachTest() { MockitoAnnotations.initMocks(this); Mockito.when(source.fetchNumber()).thenReturn(FIRST_NUMBER, SECOND_NUMBER); }</p>
+
+<p>@Test public void addsTwoNumbersFromSource(){</p>
+
+<p>Calculator calculator = new Calculator(source); long actual = calculator.fetchTwoAndAdd();</p>
+
+<p>assertThat( actual, is(FIRST_NUMBER + SECOND_NUMBER) ); } } [/java]</p>
+
+<p>We’ve now used Mockito to add a <a href="https://www.martinfowler.com/bliki/TestDouble.html">stub object</a> for our NumberSource interface. We’ve initialised the Mockito system with MockitoAnnotations.initMocks(this). We’ve then told Mockito that when we call fetchNumber(), the first time it should return FIRST_NUMBER, and the second time we call it should return SECOND_NUMBER.</p>
+
+<p>This simulates our production code that will implement this interface. We don’t have to worry about that yet - this is the big use of Mockito.</p>
+
+<p>The ‘arrange’ step is then completed by passing the ‘source’ object into the Calculator constructor.</p>
+
+<h3 id="weve-just-done-some-more-software-design">We’ve just done some more software design</h3>
+
+<p>This is another fundamental design decision as to how our two objects will collaborate together. And we’ve made it as a decision, now, before we write the production code.</p>
+
+<p>With the test in place, let’s fix those compile failures and write the production wiring code in the Calculator class:</p>
+
+<p>[java] public class Calculator { private final NumberSource source ;</p>
+
+<p>public Calculator( final NumberSource source ) { this.source = source; }</p>
+
+<p>public long fetchTwoAndAdd() { return 0; } } [/java]</p>
+
+<p>Another quick run of the test proves it still fails.</p>
+
+<p>We’re now all set. We have locked into place our public interface for our method. We have locked into place how our Calculator object is going to collaborate with its NumberSource supplier.</p>
+
+<p>All that’s missing is the production code:</p>
+
+<p>[java] public class Calculator { private final NumberSource source ;</p>
+
+<p>public Calculator( final NumberSource source ) { this.source = source; }</p>
+
+<p>public long fetchTwoAndAdd() { long firstNumber = source.fetchNumber(); long secondNumber = source.fetchNumber();</p>
+
+<p>return firstNumber + secondNumber; } } [/java]</p>
+
+<p>At last. We run the test, and it goes green and passes.</p>
+
+<p><strong>We have completed a TDD Red-Green cycle.</strong></p>
+
+<h3 id="now-for-the-most-important-tdd-step-refactor">Now for the most important TDD step: Refactor</h3>
+
+<p>At this point, the true value of TDD happens.</p>
+
+<p>With a green test, we look at the code we have written:</p>
+
+<ul>
+  <li>Is it clearly named?</li>
+  <li>Is there any duplicated code - such as copy and paste lines?</li>
+  <li>Is the flow of the code simple to understand?</li>
+</ul>
+
+<p>Our goal here is to <strong>eliminate duplicated code</strong> and <strong>make it easy for others to change later</strong>.</p>
+
+<p>As this is our first ever test and method, there isn’t any refactoring to do. So we’re done.</p>
+
+<h3 id="looking-back">Looking back</h3>
+
+<p>We have:</p>
+
+<ul>
+  <li>Used TDD to complete a Red-Green-Refactor cycle.</li>
+  <li>Built the test backwards using the 3 As: Arrange, Act, Assert.</li>
+  <li>Got 100% test coverage of our code (which is a vanity metric in larger codebases, but hey, it sounds nice).</li>
+  <li>Created a nice design for our problem.</li>
+</ul>
+
+<h3 id="check-it-in">Check it in</h3>
+
+<p>Time to let the rest of the team have our shiny new code:</p>
+
+<p>[bash] git add . git commit -m “[alan-mellor] #1 Calculator reads two numbers and adds them” git push [/bash]</p>
+
+<p>And we can have a crafty cup of tea before coding the next story. Which would probably be ‘Read two numbers from a csv file’</p>
+
+<h3 id="some-reflections">Some reflections</h3>
+
+<ul>
+  <li><strong>The only new thing is ‘assert’</strong> TDD is a workflow. In terms of new techniques, it only adds the one: you get to assert actual results against expected results. Other than that, it’s business as usual here at the code face.</li>
+  <li><strong>TDD doesn’t design - <em>you do</em></strong> There is often a belief that TDD provides ‘magic’. It really doesn’t. At each step, you have to design your software, as we have seen. Where TDD is helpful is that it pushes you into a highly decoupled design, and it forces you to design in small ‘just-in-time’ pieces.</li>
+  <li><strong>The magic is in the refactoring</strong> The Red-Green-Refactor approach means your best design work often happens whilst refactoring</li>
+  <li><strong>Watch your granularity</strong> It is quite easy to code a test that accidentally locks you in to a particular implementation. It is better if you can make them so only the public output is significant. We have done that here, with the one class. But as you get clusters of collaborating classes, this takes care.</li>
+</ul>
+
+<p>There is definitely a craft behind writing good unit tests. And <strong>Arrange - Act - Assert</strong> is the guide.</p>
+
+<h4 id="recommended-books">Recommended Books:</h4>
+
+<ul>
+  <li><a href="https://www.amazon.co.uk/Growing-Object-Oriented-Software-Guided-Signature/dp/0321503627">Growing Object Oriented Software guided by tests</a> is quite brilliant. It features a book-long case study of building an XMPP chat system, test first. The best bit is it is very practical. The first version of code is a complete mess - by design. As the authors point out, if this was all that was needed, it is tested and perfectly adequate. As the system grows, they refactor it into something with very clean layers.</li>
+  <li><a href="https://www.amazon.co.uk/d/cka/Test-Driven-Development-Addison-Wesley-Signature-Kent-Beck/0321146530/">Test Driven Development</a> The original! This is a highly readable, quite chatty book. I like Kent’s approach - write tests for the things you care about: functionality, “Have I got the right library version?” and so on. Favours tests that leave you free to change the implementation, which I like. Has the brilliant advice to <em>refactor to eliminate duplication</em>. Not just “tidy it up a bit”. Very good.</li>
+</ul>
+
+
+      </section>
+
+    </div>
+  </body>
+</html>

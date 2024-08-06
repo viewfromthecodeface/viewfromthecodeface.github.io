@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Programming: It’s all about the people, not the language | View from the code face</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Programming: It’s all about the people, not the language" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<meta property="og:description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<link rel="canonical" href="http://localhost:4000/programming-people-not-language.html" />
+<meta property="og:url" content="http://localhost:4000/programming-people-not-language.html" />
+<meta property="og:site_name" content="View from the code face" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-03-23T00:00:00+00:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Programming: It’s all about the people, not the language" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2017-03-23T00:00:00+00:00","datePublished":"2017-03-23T00:00:00+00:00","description":"View from the code face is a personal blog about programming from Alan Mellor","headline":"Programming: It’s all about the people, not the language","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/programming-people-not-language.html"},"url":"http://localhost:4000/programming-people-not-language.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#353535">
+<meta name="msapplication-navbutton-color" content="#353535">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <ul>
+            <li class="fork"><a href="https://github.com/viewfromthecodeface/viewfromthecodeface.github.io">View On GitHub</a></li>
+            
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>View from the code face</h1>
+          <p>View from the code face is a personal blog about programming from Alan Mellor</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/viewfromthecodeface">viewfromthecodeface</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/mattgraham">mattgraham</a></span>
+        </div>
+
+        <p>A great question over on <a href="https://www.quora.com/Why-do-Java-programs-end-up-being-longer-to-write-than-the-equivalent-Python-programs/answer/Alan-Mellor/comment/32473253?__filter__&amp;__nsrc__=2&amp;__snid3__=864806894">Quora</a> (thanks Khalid!)</p>
+
+<blockquote>
+  <p>Why do large corporations (e.g Quora) decide to write their important applications in python when they know that as the complexity of their code base increases, figuring out the interacting components will be hard?</p>
+</blockquote>
+
+<p>It’s a great question, and it’s taken me 30 years to figure it out.</p>
+
+<!--more-->
+
+<h2 id="how-large-software-systems-get-built">How large software systems get built</h2>
+
+<p>Programming a large system has a flow.</p>
+
+<p>It starts off with one or two people with an idea. A small system is then built. The system grows in size and complexity. The team grows in size and complexity. The small system gains traction in the market, and users demand it goes in a different direction.</p>
+
+<p>At each step, the programming is dominated by human choices.</p>
+
+<p>That first system, with those two coders - what is their favourite language? Because that’s the one they will pick. Is there any existing code to speed development? If so, then that might steer the choice to another language. As an example, the existence of the OpenFire server, plus staff expertise made Java the clear choice for building yuuguu.com</p>
+
+<h2 id="growth-and-the-hiring-circle">Growth and the hiring circle</h2>
+
+<p>The larger project - well, now we are hiring people.</p>
+
+<p>We can only hire people who are available. And these people are professional programmers. These people like to stay employed, and so learn the most “popular” languages. The ones with the most job adverts.</p>
+
+<p>So you can only easily hire for popular languages. It forms a virtuous (vicious?) circle.</p>
+
+<p>But by this time, the codebase is already up and running - in its first language.</p>
+
+<p>Do we re-write, and lose our investment? For the dream of “better development”?</p>
+
+<p>Most likely, we carry on. We might add a new additional system in other languages, but rewrites are rare.</p>
+
+<p>At the large system end, it doesn’t really matter anymore.</p>
+
+<h2 id="systems-in-the-large">Systems in the large</h2>
+
+<p>Execution speed is dominated by scaling, algorithms, data schema and overall program design.</p>
+
+<p>Development speed is dominated by readability of the existing code.</p>
+
+<p>When I started out, I figured it was all down to ‘pick the best language and you’ll be fine’.</p>
+
+<p>I now know it’s all down to people.</p>
+
+<p><em>People issues dominate development, not language.</em></p>
+
+
+      </section>
+
+    </div>
+  </body>
+</html>

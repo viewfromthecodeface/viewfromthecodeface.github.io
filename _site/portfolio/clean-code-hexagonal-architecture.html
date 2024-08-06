@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Creating Clean Code with Hexagonal Architecture | View from the code face</title>
+<meta name="generator" content="Jekyll v3.9.5" />
+<meta property="og:title" content="Creating Clean Code with Hexagonal Architecture" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<meta property="og:description" content="View from the code face is a personal blog about programming from Alan Mellor" />
+<link rel="canonical" href="http://localhost:4000/portfolio/clean-code-hexagonal-architecture.html" />
+<meta property="og:url" content="http://localhost:4000/portfolio/clean-code-hexagonal-architecture.html" />
+<meta property="og:site_name" content="View from the code face" />
+<meta property="og:type" content="article" />
+<meta property="article:published_time" content="2017-04-05T00:00:00+01:00" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Creating Clean Code with Hexagonal Architecture" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2017-04-05T00:00:00+01:00","datePublished":"2017-04-05T00:00:00+01:00","description":"View from the code face is a personal blog about programming from Alan Mellor","headline":"Creating Clean Code with Hexagonal Architecture","mainEntityOfPage":{"@type":"WebPage","@id":"http://localhost:4000/portfolio/clean-code-hexagonal-architecture.html"},"url":"http://localhost:4000/portfolio/clean-code-hexagonal-architecture.html"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script src="/assets/js/respond.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/assets/css/ie.css">
+    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!-- start custom head snippets, customize with your own _includes/head-custom.html file -->
+
+<!-- Setup theme-color -->
+<!-- start theme color meta headers -->
+<meta name="theme-color" content="#353535">
+<meta name="msapplication-navbutton-color" content="#353535">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<!-- end theme color meta headers -->
+
+
+<!-- Setup Google Analytics -->
+
+
+
+<!-- You can set your favicon here -->
+<!-- link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" -->
+
+<!-- end custom head snippets -->
+
+  </head>
+  <body>
+      <div id="header">
+        <nav>
+          <ul>
+            <li class="fork"><a href="https://github.com/viewfromthecodeface/viewfromthecodeface.github.io">View On GitHub</a></li>
+            
+          </ul>
+        </nav>
+      </div><!-- end header -->
+
+    <div class="wrapper">
+
+      <section>
+        <div id="title">
+          <h1>View from the code face</h1>
+          <p>View from the code face is a personal blog about programming from Alan Mellor</p>
+          <hr>
+          <span class="credits left">Project maintained by <a href="https://github.com/viewfromthecodeface">viewfromthecodeface</a></span>
+          <span class="credits right">Hosted on GitHub Pages &mdash; Theme by <a href="https://twitter.com/mattgraham">mattgraham</a></span>
+        </div>
+
+        <p> </p>
+
+<p>Have you ever worked with a truly tangled-up piece of code, mixing business logic with UI with database with http calls? Depressing, isn’t it. Fortunately, there is a better way …<!--more--></p>
+
+<h2 id="building-a-guess-my-number-game">Building a Guess my Number game</h2>
+
+<p>I like to learn things with decent sized examples, so I’m going back in time to one of my earliest programs, Guess my Number.</p>
+
+<p>This is a simple text game, where the computer picks a secret number between 1 and 10. You have to guess it, within five tries.</p>
+
+<p>It’s simple enough to code up quickly.</p>
+
+<p>Better still for this example, it reads input from the keyboard, outputs to the console, and has a little bit of logic tying the two together.</p>
+
+<p>Perfect.</p>
+
+<p>So - what can possibly be a problem with something so simple?</p>
+
+<h2 id="first-design">First design</h2>
+
+<p>So, ignoring <a href="https://www.viewfromthecodeface.com/how-to-write-a-tdd-unit-test-with-java/">Test Driven Development</a> for a moment, let’s go full on old-skool, and code this thing up.</p>
+
+<p>Have a quick skim read, then we’ll walk through it:</p>
+
+<script src="https://gist.github.com/viewfromthecodeface/c89cc2dc6062cb6d37c22458ea30008a.js"></script>
+
+<p>The <strong>main</strong> method is trivial. It creates a GuessMyNumber object, and supplies it with our secret number.</p>
+
+<p>It then calls play() to run the game.</p>
+
+<p>The code is short. It’s reasonably clear and readable. And it works.</p>
+
+<p>What’s not to like?</p>
+
+<h2 id="what-if-we-want-to-display-to-somewhere-else">What if we want to display to somewhere else?</h2>
+
+<p>A console based game has a retro hipster appeal to it.</p>
+
+<p>But what if we wanted to display to a GUI? Or maybe a simple web page?</p>
+
+<p>How could we do it?</p>
+
+<h3 id="we-have-to-modify-the-code">We have to modify the code</h3>
+
+<p>To display to a GUI, we would have to rip out the innards of the display() method.</p>
+
+<p>We would need it to write to a JTextArea - or something from JavaFX.</p>
+
+<p>This would need main windows creating, and other modifications to the code.</p>
+
+<p>It’s not ideal.</p>
+
+<p>We’ve built and manually tested this thing. Now we’re going to invalidate that.</p>
+
+<h2 id="how-do-we-test-this-thing">How do we test this thing?</h2>
+
+<p>Come to mention testing, it has been all manual.</p>
+
+<p>How <em>would</em> you automate tests for this?</p>
+
+<p>Well, the input must come from the keyboard. So you would need to drive that.</p>
+
+<p>The output goes to the console. You would need to intercept that.</p>
+
+<p>Whilst tools such as Mercury WinRunner will do this (and Selenium for Web Apps), testing through the User Interface is no fun.</p>
+
+<p>UI tests tend to be slow, and a bit ‘flaky’. Sometimes, screen updates are missed, and tests fail wrongly. ‘False negatives’ as they are known.</p>
+
+<h2 id="fixing-this-so-we-can-change-and-test-easily">Fixing this so we can change and test easily</h2>
+
+<p>The big problem with changing the input and output sources is <em>also</em> the problem with testing.</p>
+
+<p>If we could change the input and output sources easily, then we could write a unit test using stubs.</p>
+
+<p>Stubs are simple Java objects that let us ‘pretend’ to be the real objects:</p>
+
+<ul>
+  <li>We can simulate key strokes in Java, without messing around with the real keyboard</li>
+  <li>We can simulate a console - and capture the program output as simple Java strings.</li>
+</ul>
+
+<p>Using these ideas, we can write a fast, not-flaky Unit Test.</p>
+
+<h2 id="unit-tests-and-dependency-inversion">Unit tests and Dependency Inversion</h2>
+
+<p>Our program’s real problem is that it <em>depends on</em> the System.scanner for input and System.out.println for output.</p>
+
+<p>Our code creates and uses the objects directly.</p>
+
+<p>What if we turned that upside down?</p>
+
+<p>What if we made the code so that it <em>didn’t</em> depend on these objects, but instead, provide a way to plug them in later?</p>
+
+<p><strong>This trick is called</strong> <strong><em>dependency inversion</em></strong>.</p>
+
+<h2 id="second-design---using-dependency-inversion">Second design - using Dependency Inversion</h2>
+
+<p>Have a look at this. More code - yes. But better.</p>
+
+<p>Pay attention to:</p>
+
+<ul>
+  <li>interface <strong>Guesses</strong> - the source of input</li>
+  <li>interface <strong>Display</strong> - where we send text output</li>
+  <li>how <strong>main()</strong> ’wires up’ the input and output</li>
+  <li><strong>HexagonalGuessMyNumber constructor</strong> - look at those parameters</li>
+</ul>
+
+<script src="https://gist.github.com/viewfromthecodeface/37a7e4ed19ca27b269a58361da9768f5.js"></script>
+
+<p>In the above HexagonalGuessMyNumber class, the constructor takes our secret number still - but with two new parameters.</p>
+
+<p>These are our inverted dependencies.</p>
+
+<p>The first one, Guesses, is an interface.</p>
+
+<p>This is the contract defining the way we get input from the user.</p>
+
+<p><em>But not how it is done</em>.</p>
+
+<p>This is left to the concrete implementing class KeyboardGuesses.</p>
+
+<p>As you would expect, this contains the System.scanner code from our previous example. It is a simple refactor.</p>
+
+<h3 id="easy-to-create-new-input-and-output-classes">Easy to create new input and output classes</h3>
+
+<p>The significance of this is that HexagonalGuessMyNumber knows <em>nothing</em> about where the guesses come from.</p>
+
+<p>You could write many different implementing classes - WebGuesses, CsvFileGuesses and so on - provided they implement the interface.</p>
+
+<p>Significantly, for Unit Testing, we can write StubGuesses.</p>
+
+<p>This is a simple Java class which allows us to define what simulated keyboard input to supply next. Then we can assert against that.</p>
+
+<p>Doing this takes the mechanical keyboard - and the human player - out of the equation.</p>
+
+<h3 id="main-chooses-which-one-to-use">Main chooses which one to use</h3>
+
+<p>The next key feature is our main() method.</p>
+
+<p>We create the HexagonalGuessMyNumber object here.</p>
+
+<p>We <em>also</em> create the precise Guesses and Display instances we want to use.</p>
+
+<p>It is here that we can change our minds about where the game reads its guesses from, and where it sends output to.</p>
+
+<p>And the game object itself does not have to change. An application of the OpenClosed Principle (OCP).</p>
+
+<p>Creating the objects here and passing them in is called <strong>Dependency Injection</strong>.</p>
+
+<h3 id="injection---inversion-two-sides-of-the-same-coin">Injection - Inversion: Two sides of the same coin</h3>
+
+<p>You may have seen the terms Dependency Injection and Dependency Inversion used interchangeably.</p>
+
+<p>This is not quite right.</p>
+
+<p>You always see the two go together, but:</p>
+
+<ul>
+  <li><strong>Dependency Inversion</strong> is the design decision to take dependencies out of a class</li>
+  <li><strong>Dependency Injection</strong> is how we create those dependencies then pass them in</li>
+</ul>
+
+<h2 id="the-three-layers-of-this-system">The three layers of this system</h2>
+
+<p>Let’s consider the path that some text output takes:</p>
+
+<ul>
+  <li>The application’s core logic (HexagonalGuessMyNumber) decides on what text to output</li>
+  <li>This is then transformed into a suitable form (ConsoleDisplay)</li>
+  <li>This touches the external environment (a Console Window)</li>
+</ul>
+
+<p>If you consider the path of a number being entered at the keyboard, it’s the same thing.</p>
+
+<p>The external environment (physical keyboard) gets transformed (KeyboardGuesses) into something usable by the core logic.</p>
+
+<p>In general terms, we call these three layers</p>
+
+<ul>
+  <li>External environment</li>
+  <li>Adapters</li>
+  <li>Domain</li>
+</ul>
+
+<p>Outside, the external environment lies outside our application.</p>
+
+<p>It is the operating system calls, the file system, the display and networking technology, our SQL and NoSQL databases.</p>
+
+<p>Inside, we have our core application logic - the domain model.</p>
+
+<p>This is technology free. It is all about the core rules that makes our application what it is.</p>
+
+<p>To bridge the gap, we must adapt between the two: our adapter layer.</p>
+
+<p>Each adapter contains code that is tightly coupled to the external environment. But it adapts it into a domain-only form. KeyboardGuesses knows all about reading physical keyboards. But it then adapts it into the domain interface Guesses. This uses only String - a technology-independent way to represent user input.</p>
+
+<h3 id="abstracting-the-real-world---service-interfaces">Abstracting the real world - Service Interfaces</h3>
+
+<p>It’s worth noting that everything in the external environment that we need to access, we do via an interface in the <strong>domain</strong> layer.</p>
+
+<p>These <strong>service interfaces</strong> are designed to use only other domain classes/interfaces, and primitive types.</p>
+
+<p>They <strong>never</strong> refer to any code or convention in the adapter and environment layers.</p>
+
+<p>By doing this, we completely isolate our domain layer from anything outside it.</p>
+
+<p>It’s the complete opposite of top-down procedural designs.</p>
+
+<h2 id="so-why-call-it-hexagonal-architecture">So, why call it Hexagonal Architecture?</h2>
+
+<p>In our example above, we had two different kinds of dependency. One on an input source, and one on an output source.</p>
+
+<p>But in real apps, we have many more:</p>
+
+<ul>
+  <li>Database</li>
+  <li>HTTP web server</li>
+  <li>External Devices</li>
+  <li>Removable Media</li>
+  <li>Local Networks</li>
+</ul>
+
+<p>If you draw a diagram with the domain objects in the middle, the external environment outside, and our adapter layer in the middle you get concentric shapes.</p>
+
+<p>Like this:</p>
+
+<p><img src="/portfolio/images/HEXAGONAL-ARCHITECTURE.png" alt="How to create clean design with Hexagonal Architecture" /></p>
+
+<p> </p>
+
+<p>The reason there are six sides is simply a graphical nicety.</p>
+
+<p>You can draw out hexagonal architecture blanks on paper, and six faces is usually enough to model your whole system. Think of each face as being one aspect of the outside world: web, database, touch input.</p>
+
+<h2 id="guess-my-number-architecture-diagram">Guess my Number Architecture Diagram</h2>
+
+<p><img src="/portfolio/images/GuessMyNumberHexagonal.png" alt="Hexagonal Architecture diagram for Guess my Number game" /></p>
+
+<p>The great advantage of designing like this is the technology-free core.</p>
+
+<p>This makes it easy to reason about what the app does, easy to unit test, and easy to adapt to changes in the outside world later.</p>
+
+<p>Even for small projects, hexagonal architecture usually pays off.</p>
+
+<h2 id="get-the-code">Get the code</h2>
+
+<p>Get the source files <a href="https://github.com/viewfromthecodeface/HexagonalGuessMyNumber">on GitHub</a></p>
+
+
+      </section>
+
+    </div>
+  </body>
+</html>

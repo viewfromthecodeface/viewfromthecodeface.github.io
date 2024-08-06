@@ -6,7 +6,7 @@ coverImage: "HEXAGONAL-ARCHITECTURE.png"
 
  
 
-Have you ever worked with a truly tangled-up piece of code, mixing business logic with UI with database with http calls? Depressing, isn't it. Fortunately, there is a better way ...
+Have you ever worked with a truly tangled-up piece of code, mixing business logic with UI with database with http calls? Depressing, isn't it. Fortunately, there is a better way ...<!--more-->
 
 ## Building a Guess my Number game
 
@@ -95,7 +95,7 @@ What if we turned that upside down?
 
 What if we made the code so that it _didn't_ depend on these objects, but instead, provide a way to plug them in later?
 
-**This trick is called** **_dependency inversion_**.
+**This trick is called** **_dependency inversion_**.
 
 ## Second design - using Dependency Inversion
 
