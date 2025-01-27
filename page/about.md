@@ -1,13 +1,13 @@
 ---
+layout: page
 title: "About"
+permalink: /about
 date: "2017-03-06"
 ---
 
 ## View from the Code Face
 
 ![Headshot of Alan Mellor, software developer since the 1980s](images/alan_mellor_viewfromthecodeface_blog.png)
-
- 
 
 **View From the Code Face** is a software development blog by me, Alan Mellor.
 
@@ -61,8 +61,6 @@ During all this, I've learned a lot about techniques, people and projects.
 
 I hope to share some of the more useful stories with you!
 
-## Get in touch
+## Get in Touch
 
-I'll try and answer anything reasonable!
-
-\[contact-form to='almellor@viewfromthecodeface.com' subject='\[CodeFace Q'\]\[contact-field label='Name' type='name' required='1'/\]\[contact-field label='Email' type='email' required='1'/\]\[contact-field label='How can I help?' type='textarea' required='1'/\]\[/contact-form\]
+Easiest way is via [LinkedIn](www.linkedin.com/alan-mellor)
