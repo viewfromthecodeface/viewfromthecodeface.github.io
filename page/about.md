@@ -63,4 +63,4 @@ I hope to share some of the more useful stories with you!
 
 ## Get in Touch
 
-Easiest way is via [LinkedIn](www.linkedin.com/alan-mellor)
+Easiest way is via [LinkedIn](https://www.linkedin.com/alan-mellor)
