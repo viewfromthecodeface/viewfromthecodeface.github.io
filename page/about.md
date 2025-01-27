@@ -18,7 +18,6 @@ I want to do two things:
 
 ## Elsewhere on the Web
 
-- [@almellor on Twitter](http://www.twitter.com/almellor)
 - [Alan Mellor on Linked In](https://www.linkedin.com/in/alan-mellor-15177927/)
 - [Alan Mellor on Quora](https://www.quora.com/profile/Alan-Mellor)
 
@@ -63,4 +62,4 @@ I hope to share some of the more useful stories with you!
 
 ## Get in Touch
 
-Easiest way is via [LinkedIn](https://www.linkedin.com/alan-mellor)
+Easiest way is via [LinkedIn](https://www.linkedin.com/in/alan-mellor)
